@@ -50,7 +50,8 @@ const SingleAlbumPage = ({albumData}) => {
                     </Col>
                 </Row>
                 <Row>
-                    {artistsToAlbums.map((artist, index) => {
+                    {artistsToAlbums && 
+                    artistsToAlbums.map((artist, index) => {
                         const {title, slug} = artist
                         return(
                             <Col key={index} xs="12" sm="12">
