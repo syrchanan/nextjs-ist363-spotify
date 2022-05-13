@@ -3,10 +3,11 @@ import styles from "./paragraph.module.scss"
 
 let cx = classNames.bind(styles)
 
-const Paragraph = ({children, intro}) => {
+const Paragraph = ({children, intro, marginBottom}) => {
     let paragraphClasses = cx({
         paragraph : true,
-        intro : intro
+        intro : intro,
+        [`margin-bottom-${marginBottom}`] : marginBottom
     })
 
     return (

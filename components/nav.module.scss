@@ -16,12 +16,13 @@
     .list {
         display: none;
 
-        @include mixins.breakpoint(md) {
+        @include mixins.breakpoint(sm) {
             display: flex;
         }
 
         &.flex-direction-column {
             flex-direction: column;
+            display: flex;
         }
         
         .listItem {

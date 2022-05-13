@@ -7,6 +7,7 @@ import Col from "../../components/Col"
 import Container from "../../components/Container"
 import Link from 'next/link'
 import Paragraph from '../../components/Paragraph'
+import Section from '../../components/Section'
 
 export async function getStaticPaths() {
     const paths = await getAllArtistSlugs()
@@ -27,22 +28,37 @@ export async function getStaticProps({params}) {
 }
 
 const SingleArtistPage = ({artistData}) => {
-    const {title, featuredImage, artistInformation} = artistData
+    const {title, content, featuredImage, artistInformation} = artistData
     const {sourceUrl, altText, mediaDetails} = featuredImage.node
     const {artistsToAlbums} = artistInformation
     return(
         <Layout>
             <Container>
-                <Image
-                    src={sourceUrl}
-                    alt={altText}
-                    width={mediaDetails.width}
-                    height={mediaDetails.height}
-                />
-                <Heading level="1">{title}</Heading>
+                <Row>
+                    <Col xs="12" sm="12" md="5" marginBottom="2">
+                        <Image
+                            src={sourceUrl}
+                            alt={altText}
+                            width={mediaDetails.width}
+                            height={mediaDetails.height}
+                        />
+                    </Col>
+                    <Col xs="12" sm="12" md="7" justifyContent="center" marginBottom="2">
+                        <Heading level="1">{title}</Heading>
+                        {/* <Paragraph intro>
+                            {content}
+                        </Paragraph> */}
+
+                    </Col>
+                </Row>
+                
                 {artistsToAlbums &&
-                    <section>
-                        <Heading level="2">Albums</Heading>
+                    <Section>
+                        <Row>
+                            <Col xs="12" sm="12">
+                                <Heading level="2">Albums</Heading>
+                            </Col>
+                        </Row>
                         <Row>
                         {artistsToAlbums.map((album, index) => {
                             const {title, slug, featuredImage} = album
@@ -64,15 +80,19 @@ const SingleArtistPage = ({artistData}) => {
                             )
                         })}
                         </Row>
-                    </section>
+                    </Section>
                 }
-                <Paragraph>
-                    <Link href="/artists">
-                        <a>
-                            Back to Artists
-                        </a>
-                    </Link>
-                </Paragraph>
+                <Row>
+                    <Col xs="12" sm="12">
+                        <Paragraph>
+                            <Link href="/artists">
+                                <a>
+                                    Back to Artists
+                                </a>
+                            </Link>
+                        </Paragraph>
+                    </Col>
+                </Row>
             </Container>
         </Layout>
     )

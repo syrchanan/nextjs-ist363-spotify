@@ -1,0 +1,17 @@
+@use '../sass/abstracts/mixins.scss';
+
+.main {
+    padding: 2rem 0;
+
+    @include mixins.breakpoint(tablet) {
+        padding: 2.5rem 0;
+    }
+
+    @include mixins.breakpoint(laptop) {
+        padding: 3rem 0;
+    }
+
+    @include mixins.breakpoint(desktop) {
+        padding: 3.5rem 0;
+    }
+}

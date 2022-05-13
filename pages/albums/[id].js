@@ -6,6 +6,9 @@ import Link from 'next/link'
 import Container from "../../components/Container"
 import Row from "../../components/Row"
 import Col from "../../components/Col"
+import Section from '../../components/Section'
+import Tracks from '../../components/Tracks'
+import Paragraph from "../../components/Paragraph"
 
 export async function getStaticPaths() {
     const paths = await getAllAlbumSlugs()
@@ -33,54 +36,50 @@ const SingleAlbumPage = ({albumData}) => {
     return(
         <Layout>
             <Container>
-                <Image
-                    src={sourceUrl}
-                    alt={altText}
-                    width={mediaDetails.width}
-                    height={mediaDetails.height}
-                />
                 <Row>
-                    <Col xs="12" sm="12">
+                    <Col xs="12" md="3">
+                        <Image
+                            src={sourceUrl}
+                            alt={altText}
+                            width={mediaDetails.width}
+                            height={mediaDetails.height}
+                        />
+                    </Col>
+                    <Col xs="12" md="9" justifyContent="center">
                         <Heading level="1">{title}</Heading>
+                        {/* <Heading level="2">{year}</Heading> */}
+                        {artistsToAlbums && 
+                        artistsToAlbums.map((artist, index) => {
+                            const {title, slug} = artist
+                            return(
+                                    <Heading key={index} level="2">
+                                        <Link href={`/artists/${slug}`}>
+                                            <a>{title}</a>
+                                        </Link>
+                                    </Heading>
+                            )
+                        })}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col marginBottom="2">
+                        {songsToAlbums &&
+                            <Section>
+                                <Heading level="2">Songs</Heading>
+                                <Tracks items={songsToAlbums}/>
+                            </Section>
+                        }
                     </Col>
                 </Row>
                 <Row>
                     <Col xs="12" sm="12">
-                        <Heading level="2">{year}</Heading>
-                    </Col>
-                </Row>
-                <Row>
-                    {artistsToAlbums && 
-                    artistsToAlbums.map((artist, index) => {
-                        const {title, slug} = artist
-                        return(
-                            <Col key={index} xs="12" sm="12">
-                                <Link href={`/artists/${slug}`}>
-                                    <a>
-                                        <Heading level="2">{title}</Heading>
-                                    </a>
-                                </Link>
-                            </Col>
-                        )
-                    })}
-                </Row>
-                <Row>
-                    <Col>
-                        {songsToAlbums &&
-                            <section>
-                            <Heading level="2">Songs</Heading>
-                            <Row>
-                                {songsToAlbums.map((song, index) => {
-                                    const {title} = song
-                                    return(
-                                        <Col key={index} xs="12" sm="12">
-                                            <Heading level="3">{title}</Heading>
-                                        </Col>
-                                    )
-                                })}
-                            </Row>
-                            </section>
-                        }
+                        <Paragraph>
+                            <Link href="/albums">
+                                <a>
+                                    Back to Albums
+                                </a>
+                            </Link>
+                        </Paragraph>
                     </Col>
                 </Row>
             </Container>

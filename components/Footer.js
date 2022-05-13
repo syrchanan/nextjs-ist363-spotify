@@ -10,13 +10,13 @@ const Footer = () => {
         <footer className={styles.footer}>
             <Container>
                 <Row alignItems="center">
-                    <Col xs="3" sm="3">
+                    <Col xs="12" md="3">
                         <Logo color='white'/>
                     </Col>
-                    <Col sm="6">
+                    <Col xs="12" md="6">
                         <Nav/>
                     </Col>
-                    <Col sm="3">
+                    <Col xs="12" md="3">
                         Social Media Links
                     </Col>
                 </Row>

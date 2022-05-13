@@ -15,8 +15,8 @@ html{
     min-height:100vh;
 }
 body {
-    // background-color: vars.$SUorange;
-    color: vars.$SUblue;
+    background-color: vars.$color_light_grey;
+    color: black;
     font-family: vars.$font_primary;
     min-height: 100%; //100% of the parent html document
     @include mixins.breakpoint(tablet){

@@ -1,13 +1,24 @@
+@use '../sass/abstracts/mixins.scss';
+@use '../sass/abstracts/vars.scss';
+
 .tracks {
     padding: 0;
     margin: 0;
     background-color: white;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    //grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+
+    @include mixins.breakpoint(laptop) {
+        grid-template-columns: repeat(3, 1fr);
+    }
 
     .trackItem {
         padding: 1rem;
         margin: 0;
+        border-bottom: 1px solid vars.$color_light_grey;
+        display: flex;
+        justify-content: space-between;
     }
 }

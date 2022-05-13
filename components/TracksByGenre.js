@@ -1,14 +1,12 @@
 import { useState } from 'react'
-import { getGenres, getTracks, filterTracksByGenre } from '../lib/api'
+import { getGenres, filterTracksByGenre } from '../lib/api'
 import Tabs from './Tabs'
 import Tracks from './Tracks'
 
 
-const TracksByGenre = () => {
-	const tracks = getTracks()
-	const genres = getGenres()
-
+const TracksByGenre = ({items}) => {
     const [activeGenre, setActiveGenre] = useState("Rock");
+    const genres = getGenres()
 
     return(
         <div>
@@ -19,7 +17,7 @@ const TracksByGenre = () => {
                 clickHandler={setActiveGenre}
             />
             <Tracks
-                items = {filterTracksByGenre(tracks, activeGenre)}
+                items = {filterTracksByGenre(items, activeGenre)}
             />
         </div>
     )
