@@ -1,0 +1,27 @@
+@use "../sass/abstracts/mixins.scss";
+
+$sizes: xs, sm, md, lg;
+$textAlignments: left, center, right;
+
+.col {
+    // background-color: orange;
+    width: 100%;
+    padding: 0 2rem 0 2rem;
+    // &.col-6{ //append to end of .col
+    @each $size in $sizes { //each expects an array
+        //make local variable in sizes as size
+        @include mixins.breakpoint($size) {
+            @for $i from 1 through 12 { //expects a number range
+                &.col-#{$size}-#{$i} {
+                    width: calc(100%*($i/12));
+                }
+            }
+        }
+    }
+
+    @each $textAlignment in $textAlignments {
+        &.text-align-#{$textAlignment} {
+            text-align: $textAlignment;
+        }
+    }
+}

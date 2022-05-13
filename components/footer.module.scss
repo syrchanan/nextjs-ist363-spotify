@@ -1,0 +1,7 @@
+@use '../sass/abstracts/vars.scss';
+
+.footer {
+    background-color: vars.$color_grey;
+    padding: 2rem 0;
+    color: white;
+}
